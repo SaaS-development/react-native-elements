@@ -41,7 +41,6 @@ export type IconType =
   | 'evilicon'
   | 'entypo'
   | 'antdesign'
-  | 'font-awesome-5'
   | string;
 
 export interface IconObject {
@@ -120,7 +119,7 @@ export interface AvatarProps {
   /**
    * Callback function when pressing Edit button
    */
-  onAccessoryPress?(): void;
+  onEditPress?(): void;
 
   /**
    * Callback function when pressing component
@@ -181,14 +180,14 @@ export interface AvatarProps {
    *
    * @default false
    */
-  showAccessory?: boolean;
+  showEditButton?: boolean;
 
   /**
    * Edit button for the avatar
    *
    * @default "{size: null, iconName: 'mode-edit', iconType: 'material', iconColor: '#fff', underlayColor: '#000', style: null}"
    */
-  accessory?: Partial<IconProps> & Partial<ImageProps>;
+  editButton?: Partial<IconProps>;
 
   /**
    * Style for the placeholder
@@ -234,7 +233,7 @@ export interface AvatarProps {
  * Avatar Component
  *
  */
-export class Avatar extends React.Component<AvatarProps> {}
+export class Avatar extends React.Component<AvatarProps, any> {}
 
 export interface ButtonProps
   extends TouchableOpacityProps,
@@ -606,6 +605,11 @@ export interface ButtonGroupProps {
   containerBorderRadius?: number;
 
   /**
+   * Styling for the final border edge
+   */
+  lastBorderStyle?: StyleProp<TextStyle | ViewStyle>;
+
+  /**
    * Controls if buttons are disabled
    *
    * Setting `true` makes all of them disabled, while using an array only makes those indices disabled
@@ -633,13 +637,6 @@ export interface ButtonGroupProps {
    * Styling for the text of each selected button when disabled
    */
   disabledSelectedTextStyle?: StyleProp<TextStyle>;
-
-  /**
-   * Display in vertical orientation
-   *
-   * @default false
-   */
-  vertical?: boolean;
 
   /**
    * Method to update Button Group Index
@@ -846,7 +843,7 @@ export interface InputProps extends TextInputProperties {
   /**
    * Renders component in place of the React Native `TextInput` (optional)
    */
-  InputComponent?: React.ComponentType<any>;
+  inputComponent?: React.ComponentType<any>;
 
   /**
    * 	Adds styling to input component (optional)
@@ -882,11 +879,6 @@ export interface InputProps extends TextInputProperties {
    *  props to be passed to the React Native Text component used to display the label (optional)
    */
   labelProps?: TextProps;
-
-  /**
-   *  displays error message
-   */
-  renderErrorMessage?: boolean;
 }
 
 export class Input extends React.Component<InputProps> {
@@ -1079,20 +1071,6 @@ export interface IconProps extends IconButtonProps {
    * Styles for the Icon when disabled
    */
   disabledStyle?: StyleProp<ViewStyle>;
-
-  /**
-   * FontAwesome5 solid style
-   *
-   * @default false
-   */
-  solid?: boolean;
-
-  /**
-   * FontAwesome5 brands icon set
-   *
-   * @default false
-   */
-  brand?: boolean;
 }
 
 /**
@@ -1168,9 +1146,9 @@ export interface OverlayProps extends ModalProps {
   isVisible: boolean;
 
   /**
-   * Style for the backdrop
+   * Style for the overlay container
    */
-  backdropStyle?: StyleProp<ViewStyle>;
+  containerStyle?: StyleProp<ViewStyle>;
 
   /**
    * Style of the actual overlay
@@ -1178,16 +1156,46 @@ export interface OverlayProps extends ModalProps {
   overlayStyle?: StyleProp<ViewStyle>;
 
   /**
+   * Background color of the actual overlay
+   *
+   * @default white
+   */
+  windowBackgroundColor?: string;
+
+  /**
+   * Background color for the overlay background
+   *
+   * @default rgba(0, 0, 0, .5)
+   */
+  overlayBackgroundColor?: string;
+
+  /**
+   * Border radius for the overlay
+   *
+   * @default 3
+   */
+  borderRadius?: number;
+
+  /**
+   * Width of the overlay
+   *
+   * @default 'Screen width -80'
+   */
+  width?: number | string;
+
+  /**
+   * Height of the overlay
+   *
+   * @default 'Screen height - 180'
+   */
+  height?: number | string;
+
+  /**
    * If to take up full screen width and height
    *
    * @default false
    */
   fullScreen?: boolean;
-
-  /**
-   *  Override React Native `Modal` component (usable for web-platform)
-   */
-  ModalComponent?: React.ComponentClass;
 
   /**
    * Callback when user touches the backdrop
@@ -1272,7 +1280,7 @@ export class PricingCard extends React.Component<PricingCardProps, any> {}
  */
 export * from 'react-native-ratings';
 
-export type IconNode = boolean | React.ReactElement<{}> | Partial<IconProps>;
+export type IconNode = boolean | React.ReactElement<{}> | IconProps;
 
 export interface SearchBarWrapper {
   /**
@@ -1364,11 +1372,6 @@ export interface TooltipProps {
   highlightColor?: string;
 
   /**
-   *  Override React Native `Modal` component (usable for web-platform)
-   */
-  ModalComponent?: React.ComponentClass;
-
-  /**
    * function which gets called on closing the tooltip.
    */
   onClose?(): void;
@@ -1428,11 +1431,6 @@ export interface TooltipProps {
    * Flag to determine whether or not dislay pointer.
    */
   withPointer?: boolean;
-
-  /**
-   * Force skip StatusBar height when calculating yOffset of element position (usable inside Modal on Android)
-   */
-  skipAndroidStatusBar?: boolean;
 }
 
 export class Tooltip extends React.Component<TooltipProps, any> {
@@ -1943,13 +1941,6 @@ export interface ImageProps extends RNImageProps {
    * Additional styling for the placeholder container
    */
   placeholderStyle?: StyleProp<ViewStyle>;
-
-  /**
-   * Perform fade transition on image load
-   *
-   * @default true
-   */
-  transition?: boolean;
 }
 
 /**

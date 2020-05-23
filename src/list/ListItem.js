@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 import { renderNode, nodeType } from '../helpers';
-import { withTheme } from '../config';
+import { ViewPropTypes, TextPropTypes, withTheme } from '../config';
 
 import Avatar from '../avatar/Avatar';
 import Badge from '../badge/Badge';
@@ -172,7 +172,6 @@ const ListItem = props => {
 
         {input && (
           <Input
-            renderErrorMessage={false}
             {...input}
             inputStyle={StyleSheet.flatten([
               styles.input,
@@ -289,8 +288,10 @@ const styles = {
   },
   buttonGroupContainer: {
     flex: 1,
-    marginHorizontal: 0,
-    marginVertical: 0,
+    marginLeft: 0,
+    marginRight: 0,
+    marginTop: 0,
+    marginBottom: 0,
   },
   rightTitle: {
     color: ANDROID_SECONDARY,
@@ -301,17 +302,17 @@ const styles = {
 };
 
 ListItem.propTypes = {
-  containerStyle: PropTypes.object,
-  contentContainerStyle: PropTypes.object,
-  rightContentContainerStyle: PropTypes.object,
+  containerStyle: ViewPropTypes.style,
+  contentContainerStyle: ViewPropTypes.style,
+  rightContentContainerStyle: ViewPropTypes.style,
   Component: PropTypes.elementType,
   onPress: PropTypes.func,
   onLongPress: PropTypes.func,
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  titleStyle: PropTypes.object,
+  titleStyle: TextPropTypes.style,
   titleProps: PropTypes.object,
   subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  subtitleStyle: PropTypes.object,
+  subtitleStyle: TextPropTypes.style,
   subtitleProps: PropTypes.object,
   leftIcon: nodeType,
   leftAvatar: nodeType,
@@ -320,10 +321,10 @@ ListItem.propTypes = {
   rightAvatar: nodeType,
   rightElement: nodeType,
   rightTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  rightTitleStyle: PropTypes.object,
+  rightTitleStyle: TextPropTypes.style,
   rightTitleProps: PropTypes.object,
   rightSubtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  rightSubtitleStyle: PropTypes.object,
+  rightSubtitleStyle: TextPropTypes.style,
   rightSubtitleProps: PropTypes.object,
   input: PropTypes.object,
   buttonGroup: PropTypes.object,
@@ -333,7 +334,7 @@ ListItem.propTypes = {
   chevron: nodeType,
   checkmark: nodeType,
   disabled: PropTypes.bool,
-  disabledStyle: PropTypes.object,
+  disabledStyle: ViewPropTypes.style,
   topDivider: PropTypes.bool,
   bottomDivider: PropTypes.bool,
   pad: PropTypes.number,

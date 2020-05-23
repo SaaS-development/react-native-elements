@@ -1,14 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  TouchableOpacity,
-  Modal,
-  View,
-  StatusBar,
-  I18nManager,
-} from 'react-native';
+import { TouchableOpacity, Modal, View, StatusBar } from 'react-native';
 
-import { withTheme } from '../config';
+import { ViewPropTypes, withTheme } from '../config';
 import { ScreenWidth, ScreenHeight, isIOS } from '../helpers';
 
 import Triangle from './Triangle';
@@ -75,7 +69,7 @@ class Tooltip extends React.PureComponent {
 
     return {
       position: 'absolute',
-      [I18nManager.isRTL ? 'right' : 'left']: x,
+      left: x,
       top: y,
       width,
       height,
@@ -101,7 +95,7 @@ class Tooltip extends React.PureComponent {
         style={{
           position: 'absolute',
           top: pastMiddleLine ? yOffset - 13 : yOffset + elementHeight - 2,
-          [I18nManager.isRTL ? 'right' : 'left']:
+          left:
             xOffset +
             getElementVisibleWidth(elementWidth, xOffset, ScreenWidth) / 2 -
             7.5,
@@ -130,7 +124,7 @@ class Tooltip extends React.PureComponent {
           style={{
             position: 'absolute',
             top: yOffset,
-            [I18nManager.isRTL ? 'right' : 'left']: xOffset,
+            left: xOffset,
             backgroundColor: highlightColor,
             overflow: 'visible',
             width: elementWidth,
@@ -153,7 +147,6 @@ class Tooltip extends React.PureComponent {
   }
 
   getElementPosition = () => {
-    const { skipAndroidStatusBar } = this.props;
     this.renderedElement &&
       this.renderedElement.measure(
         (
@@ -166,10 +159,9 @@ class Tooltip extends React.PureComponent {
         ) => {
           this.setState({
             xOffset: pageOffsetX,
-            yOffset:
-              isIOS || skipAndroidStatusBar
-                ? pageOffsetY
-                : pageOffsetY - StatusBar.currentHeight,
+            yOffset: isIOS
+              ? pageOffsetY
+              : pageOffsetY - StatusBar.currentHeight,
             elementWidth: width,
             elementHeight: height,
           });
@@ -179,13 +171,7 @@ class Tooltip extends React.PureComponent {
 
   render() {
     const { isVisible } = this.state;
-    const {
-      onClose,
-      withOverlay,
-      overlayColor,
-      onOpen,
-      ModalComponent,
-    } = this.props;
+    const { onClose, withOverlay, overlayColor, onOpen } = this.props;
 
     return (
       <View
@@ -195,7 +181,7 @@ class Tooltip extends React.PureComponent {
         }}
       >
         {this.renderContent(false)}
-        <ModalComponent
+        <Modal
           animationType="fade"
           visible={isVisible}
           transparent
@@ -210,7 +196,7 @@ class Tooltip extends React.PureComponent {
           >
             {this.renderContent(true)}
           </TouchableOpacity>
-        </ModalComponent>
+        </Modal>
       </View>
     );
   }
@@ -223,7 +209,7 @@ Tooltip.propTypes = {
   toggleOnPress: PropTypes.bool,
   height: PropTypes.number,
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  containerStyle: PropTypes.object,
+  containerStyle: ViewPropTypes.style,
   pointerColor: PropTypes.string,
   onClose: PropTypes.func,
   onOpen: PropTypes.func,
@@ -231,8 +217,6 @@ Tooltip.propTypes = {
   withOverlay: PropTypes.bool,
   backgroundColor: PropTypes.string,
   highlightColor: PropTypes.string,
-  skipAndroidStatusBar: PropTypes.bool,
-  ModalComponent: PropTypes.elementType,
 };
 
 Tooltip.defaultProps = {
@@ -247,8 +231,6 @@ Tooltip.defaultProps = {
   backgroundColor: '#617080',
   onClose: () => {},
   onOpen: () => {},
-  skipAndroidStatusBar: false,
-  ModalComponent: Modal,
 };
 
 const styles = {

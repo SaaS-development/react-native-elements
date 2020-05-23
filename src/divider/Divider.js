@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native';
 
-import { withTheme } from '../config';
+import { ViewPropTypes, withTheme } from '../config';
 
 const Divider = ({ style, theme, ...rest }) => (
   <View
@@ -12,7 +12,7 @@ const Divider = ({ style, theme, ...rest }) => (
 );
 
 Divider.propTypes = {
-  style: PropTypes.object,
+  style: ViewPropTypes.style,
   theme: PropTypes.object,
 };
 

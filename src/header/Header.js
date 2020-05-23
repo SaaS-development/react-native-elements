@@ -6,9 +6,10 @@ import {
   StyleSheet,
   View,
   ImageBackground,
+  Image,
 } from 'react-native';
 
-import { getStatusBarHeight, withTheme } from '../config';
+import { ViewPropTypes, getStatusBarHeight, withTheme } from '../config';
 import { renderNode, nodeType } from '../helpers';
 
 import Text from '../text/Text';
@@ -43,7 +44,7 @@ const Children = ({ style, placement, children }) => (
 
 Children.propTypes = {
   placement: PropTypes.oneOf(['left', 'center', 'right']),
-  style: PropTypes.object,
+  style: ViewPropTypes.style,
   children: PropTypes.oneOfType([nodeType, PropTypes.node]),
 };
 
@@ -76,9 +77,7 @@ class Header extends Component {
       linearGradientProps,
       ViewComponent = linearGradientProps && global.Expo
         ? global.Expo.LinearGradient
-        : backgroundImage
-        ? ImageBackground
-        : View,
+        : ImageBackground,
       theme,
       ...attributes
     } = this.props;
@@ -144,13 +143,13 @@ Header.propTypes = {
   leftComponent: nodeType,
   centerComponent: nodeType,
   rightComponent: nodeType,
-  leftContainerStyle: PropTypes.object,
-  centerContainerStyle: PropTypes.object,
-  rightContainerStyle: PropTypes.object,
+  leftContainerStyle: ViewPropTypes.style,
+  centerContainerStyle: ViewPropTypes.style,
+  rightContainerStyle: ViewPropTypes.style,
   backgroundColor: PropTypes.string,
-  backgroundImage: PropTypes.node,
-  backgroundImageStyle: PropTypes.object,
-  containerStyle: PropTypes.object,
+  backgroundImage: Image.propTypes.source,
+  backgroundImageStyle: Image.propTypes.style,
+  containerStyle: ViewPropTypes.style,
   statusBarProps: PropTypes.object,
   barStyle: PropTypes.oneOf(['default', 'light-content', 'dark-content']),
   children: PropTypes.oneOfType([

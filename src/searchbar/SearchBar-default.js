@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ActivityIndicator, View, StyleSheet } from 'react-native';
+import { ActivityIndicator, View, Text, StyleSheet } from 'react-native';
 
+import { ViewPropTypes } from '../config';
 import { renderNode, nodeType } from '../helpers';
 
 import Input from '../input/Input';
@@ -44,13 +45,13 @@ class SearchBar extends React.Component {
     this.props.onClear();
   };
 
-  onFocus = event => {
-    this.props.onFocus(event);
+  onFocus = () => {
+    this.props.onFocus();
     this.setState({ isEmpty: this.props.value === '' });
   };
 
-  onBlur = event => {
-    this.props.onBlur(event);
+  onBlur = () => {
+    this.props.onBlur();
   };
 
   onChangeText = text => {
@@ -90,7 +91,6 @@ class SearchBar extends React.Component {
       >
         <Input
           testID="searchInput"
-          renderErrorMessage={false}
           {...attributes}
           onFocus={this.onFocus}
           onBlur={this.onBlur}
@@ -149,11 +149,11 @@ SearchBar.propTypes = {
   searchIcon: nodeType,
   loadingProps: PropTypes.object,
   showLoading: PropTypes.bool,
-  containerStyle: PropTypes.object,
-  leftIconContainerStyle: PropTypes.object,
-  rightIconContainerStyle: PropTypes.object,
-  inputContainerStyle: PropTypes.object,
-  inputStyle: PropTypes.object,
+  containerStyle: ViewPropTypes.style,
+  leftIconContainerStyle: ViewPropTypes.style,
+  rightIconContainerStyle: ViewPropTypes.style,
+  inputContainerStyle: ViewPropTypes.style,
+  // inputStyle: Text.propTypes.style,
   onClear: PropTypes.func,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,

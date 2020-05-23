@@ -6,13 +6,14 @@ import {
   Platform,
   TouchableHighlight,
   ActivityIndicator,
+  Text as NativeText,
 } from 'react-native';
 
-import Icon from '../icons/Icon';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import Text from '../text/Text';
 import fonts from '../config/fonts';
 
-import { withTheme } from '../config';
+import { ViewPropTypes, withTheme } from '../config';
 
 const colors = {
   'github-alt': '#000000',
@@ -24,7 +25,7 @@ const colors = {
   codepen: '#000000',
   envelope: '#000000',
   etsy: '#f2581e',
-  facebook: '#4267B2',
+  facebook: '#3b5998',
   flickr: '#ff0084',
   foursquare: '#0072b1',
   github: '#000000',
@@ -56,7 +57,6 @@ const SocialIcon = props => {
     fontFamily,
     fontStyle,
     fontWeight,
-    iconType,
     iconColor,
     iconSize,
     iconStyle,
@@ -100,11 +100,10 @@ const SocialIcon = props => {
     >
       <View style={styles.wrapper}>
         <Icon
-          iconStyle={StyleSheet.flatten([iconStyle && iconStyle])}
+          style={StyleSheet.flatten([iconStyle && iconStyle])}
           color={light ? colors[type] : iconColor}
           name={type}
           size={iconSize}
-          type={iconType}
         />
         {button && title && (
           <Text
@@ -142,27 +141,25 @@ SocialIcon.propTypes = {
   button: PropTypes.bool,
   onPress: PropTypes.func,
   onLongPress: PropTypes.func,
-  iconType: PropTypes.string,
-  iconStyle: PropTypes.object,
-  style: PropTypes.object,
+  iconStyle: ViewPropTypes.style,
+  style: ViewPropTypes.style,
   iconColor: PropTypes.string,
   underlayColor: PropTypes.string,
   title: PropTypes.string,
   raised: PropTypes.bool,
   disabled: PropTypes.bool,
   loading: PropTypes.bool,
-  activityIndicatorStyle: PropTypes.object,
+  activityIndicatorStyle: ViewPropTypes.style,
   small: PropTypes.string,
   iconSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   light: PropTypes.bool,
   fontWeight: PropTypes.string,
-  fontStyle: PropTypes.object,
+  fontStyle: NativeText.propTypes.style,
   fontFamily: PropTypes.string,
 };
 
 SocialIcon.defaultProps = {
   raised: true,
-  iconType: 'font-awesome',
   iconColor: 'white',
   iconSize: 24,
   button: false,

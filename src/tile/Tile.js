@@ -1,8 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Dimensions,
+  Image as ImageNative,
+  TouchableOpacity,
+} from 'react-native';
 
-import { withTheme } from '../config';
+import { TextPropTypes, ViewPropTypes, withTheme } from '../config';
 
 import Image from '../image/Image';
 import Text from '../text/Text';
@@ -100,7 +106,7 @@ const Tile = props => {
       >
         <Text
           testID="tileTitle"
-          h4={!titleStyle || !titleStyle.fontSize}
+          h4
           style={StyleSheet.flatten([styles.text, titleStyle && titleStyle])}
           numberOfLines={titleNumberOfLines}
         >
@@ -116,20 +122,20 @@ Tile.propTypes = {
   title: PropTypes.string,
   icon: PropTypes.object,
   caption: PropTypes.node,
-  imageSrc: PropTypes.node,
+  imageSrc: ImageNative.propTypes.source,
   onPress: PropTypes.func,
   activeOpacity: PropTypes.number,
-  containerStyle: PropTypes.object,
-  imageContainerStyle: PropTypes.object,
-  iconContainerStyle: PropTypes.object,
-  overlayContainerStyle: PropTypes.object,
-  titleStyle: PropTypes.object,
-  captionStyle: PropTypes.object,
+  containerStyle: ViewPropTypes.style,
+  imageContainerStyle: ViewPropTypes.style,
+  iconContainerStyle: ViewPropTypes.style,
+  overlayContainerStyle: ViewPropTypes.style,
+  titleStyle: TextPropTypes.style,
+  captionStyle: TextPropTypes.style,
   width: PropTypes.number,
   height: PropTypes.number,
   featured: PropTypes.bool,
   children: PropTypes.node,
-  contentContainerStyle: PropTypes.object,
+  contentContainerStyle: ViewPropTypes.style,
   titleNumberOfLines: PropTypes.number,
   imageProps: PropTypes.object,
   ImageComponent: PropTypes.elementType,

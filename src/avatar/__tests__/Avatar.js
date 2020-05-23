@@ -126,6 +126,11 @@ describe('Avatar Component', () => {
         />
       );
 
+      expect(error).toHaveBeenCalledWith(
+        expect.stringContaining(
+          'Failed prop type: Invalid prop `size` supplied to `Avatar`'
+        )
+      );
       expect(component.length).toBe(1);
       expect(toJson(component)).toMatchSnapshot();
     });
@@ -139,12 +144,12 @@ describe('Avatar Component', () => {
     });
   });
 
-  describe('Accessory shows', () => {
+  describe('Edit button', () => {
     it('ios', () => {
       const component = shallow(
         <Avatar
           source={{ uri: 'https://i.imgur.com/0y8Ftya.jpg' }}
-          showAccessory
+          showEditButton
         />
       );
       expect(component.length).toBe(1);
@@ -159,23 +164,7 @@ describe('Avatar Component', () => {
       const component = shallow(
         <Avatar
           source={{ uri: 'https://i.imgur.com/0y8Ftya.jpg' }}
-          showAccessory
-        />
-      );
-      expect(component.length).toBe(1);
-      expect(toJson(component)).toMatchSnapshot();
-    });
-
-    it('image source', () => {
-      const component = shallow(
-        <Avatar
-          source={{ uri: 'https://i.imgur.com/0y8Ftya.jpg' }}
-          accessory={{
-            source: {
-              uri: 'https://homepages.cae.wisc.edu/~ece533/images/baboon.png',
-            },
-          }}
-          showAccessory
+          showEditButton
         />
       );
       expect(component.length).toBe(1);

@@ -1,8 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TouchableOpacity, View, StyleSheet, Dimensions } from 'react-native';
+import {
+  TouchableOpacity,
+  Text as NativeText,
+  View,
+  Image,
+  StyleSheet,
+  Dimensions,
+} from 'react-native';
 
-import { BackgroundImage, withTheme } from '../config';
+import { ViewPropTypes, BackgroundImage, withTheme } from '../config';
 import { renderNode } from '../helpers';
 
 import Text from '../text/Text';
@@ -108,7 +115,7 @@ const FeaturedTile = props => {
           </View>
           <Text
             testID="featuredTileTitle"
-            h4={!titleStyle || !titleStyle.fontSize}
+            h4
             style={StyleSheet.flatten([styles.text, titleStyle && titleStyle])}
           >
             {title}
@@ -124,14 +131,14 @@ FeaturedTile.propTypes = {
   title: PropTypes.string,
   icon: PropTypes.object,
   caption: PropTypes.node,
-  imageSrc: PropTypes.node,
+  imageSrc: Image.propTypes.source,
   onPress: PropTypes.func,
-  containerStyle: PropTypes.object,
-  iconContainerStyle: PropTypes.object,
-  imageContainerStyle: PropTypes.object,
-  overlayContainerStyle: PropTypes.object,
-  titleStyle: PropTypes.object,
-  captionStyle: PropTypes.object,
+  containerStyle: ViewPropTypes.style,
+  iconContainerStyle: ViewPropTypes.style,
+  imageContainerStyle: ViewPropTypes.style,
+  overlayContainerStyle: ViewPropTypes.style,
+  titleStyle: NativeText.propTypes.style,
+  captionStyle: NativeText.propTypes.style,
   width: PropTypes.number,
   height: PropTypes.number,
   ImageComponent: PropTypes.elementType,

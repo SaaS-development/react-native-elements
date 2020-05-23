@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, ImageBackground, View } from 'react-native';
+import { Button, ImageBackground } from 'react-native';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import { create } from 'react-test-renderer';
@@ -14,9 +14,7 @@ const titleCfg = { text: 'This is a title' };
 
 describe('Header Component', () => {
   it('should render without issues', () => {
-    const component = shallow(
-      <Header theme={theme} backgroundImage="image.png" />
-    );
+    const component = shallow(<Header theme={theme} />);
 
     expect(component.length).toBe(1);
     expect(toJson(component)).toMatchSnapshot();
@@ -98,7 +96,7 @@ describe('Header Component', () => {
 
     expect(
       component
-        .find(View)
+        .find(ImageBackground)
         .first()
         .props().style.backgroundColor
     ).toBe('#aaa');
@@ -111,7 +109,7 @@ describe('Header Component', () => {
 
     expect(
       component
-        .find(View)
+        .find(ImageBackground)
         .at(0)
         .props().style.backgroundColor
     ).toBe('#ccc');
@@ -175,7 +173,7 @@ describe('Header Component', () => {
 
     expect(
       component
-        .find(View)
+        .find(ImageBackground)
         .first()
         .props().imageStyle
     ).toEqual({ opacity: 0.1 });

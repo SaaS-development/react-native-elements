@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Platform, StyleSheet } from 'react-native';
+import { View, Platform, Image as ImageNative, StyleSheet } from 'react-native';
 
 import normalize from '../helpers/normalizeText';
-import { fonts, withTheme } from '../config';
+import { fonts, TextPropTypes, ViewPropTypes, withTheme } from '../config';
 
 import Text from '../text/Text';
 import Divider from '../divider/Divider';
@@ -76,10 +76,7 @@ const Card = props => {
         {image && (
           <View style={imageWrapperStyle && imageWrapperStyle}>
             <Image
-              style={StyleSheet.flatten([
-                { width: null, height: 150 },
-                imageStyle && imageStyle,
-              ])}
+              style={[{ width: null, height: 150 }, imageStyle && imageStyle]}
               source={image}
               {...imageProps}
             >
@@ -131,19 +128,19 @@ Card.propTypes = {
     PropTypes.element,
     PropTypes.arrayOf(PropTypes.element),
   ]),
-  containerStyle: PropTypes.object,
-  wrapperStyle: PropTypes.object,
-  overlayStyle: PropTypes.object,
+  containerStyle: ViewPropTypes.style,
+  wrapperStyle: ViewPropTypes.style,
+  overlayStyle: ViewPropTypes.style,
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  titleStyle: PropTypes.object,
+  titleStyle: TextPropTypes.style,
   featuredTitle: PropTypes.string,
-  featuredTitleStyle: PropTypes.object,
+  featuredTitleStyle: TextPropTypes.style,
   featuredSubtitle: PropTypes.string,
-  featuredSubtitleStyle: PropTypes.object,
-  dividerStyle: PropTypes.object,
-  image: PropTypes.node,
-  imageStyle: PropTypes.object,
-  imageWrapperStyle: PropTypes.object,
+  featuredSubtitleStyle: TextPropTypes.style,
+  dividerStyle: ViewPropTypes.style,
+  image: ImageNative.propTypes.source,
+  imageStyle: ViewPropTypes.style,
+  imageWrapperStyle: ViewPropTypes.style,
   imageProps: PropTypes.object,
   titleNumberOfLines: PropTypes.number,
   theme: PropTypes.object,

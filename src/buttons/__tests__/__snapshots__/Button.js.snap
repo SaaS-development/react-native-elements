@@ -5,20 +5,12 @@ exports[`Button Component Button Types Clear should display clear button 1`] = `
   style={
     Object {
       "borderRadius": 3,
-      "overflow": "hidden",
     }
   }
 >
   <TouchableOpacity
-    accessibilityRole="button"
-    accessibilityState={
-      Object {
-        "busy": false,
-        "disabled": false,
-      }
-    }
     activeOpacity={0.3}
-    delayPressIn={0}
+    background={Object {}}
     disabled={false}
     onPress={[Function]}
   >
@@ -59,20 +51,12 @@ exports[`Button Component Button Types Clear should display clear button disable
   style={
     Object {
       "borderRadius": 3,
-      "overflow": "hidden",
     }
   }
 >
   <TouchableOpacity
-    accessibilityRole="button"
-    accessibilityState={
-      Object {
-        "busy": false,
-        "disabled": true,
-      }
-    }
     activeOpacity={0.3}
-    delayPressIn={0}
+    background={Object {}}
     disabled={true}
     onPress={[Function]}
   >
@@ -121,20 +105,12 @@ exports[`Button Component Button Types Clear should display raised clear button 
   style={
     Object {
       "borderRadius": 3,
-      "overflow": "hidden",
     }
   }
 >
   <TouchableOpacity
-    accessibilityRole="button"
-    accessibilityState={
-      Object {
-        "busy": false,
-        "disabled": false,
-      }
-    }
     activeOpacity={0.3}
-    delayPressIn={0}
+    background={Object {}}
     disabled={false}
     onPress={[Function]}
   >
@@ -175,20 +151,12 @@ exports[`Button Component Button Types Outline should display outline button 1`]
   style={
     Object {
       "borderRadius": 3,
-      "overflow": "hidden",
     }
   }
 >
   <TouchableOpacity
-    accessibilityRole="button"
-    accessibilityState={
-      Object {
-        "busy": false,
-        "disabled": false,
-      }
-    }
     activeOpacity={0.3}
-    delayPressIn={0}
+    background={Object {}}
     disabled={false}
     onPress={[Function]}
   >
@@ -229,20 +197,12 @@ exports[`Button Component Button Types Outline should display outline button dis
   style={
     Object {
       "borderRadius": 3,
-      "overflow": "hidden",
     }
   }
 >
   <TouchableOpacity
-    accessibilityRole="button"
-    accessibilityState={
-      Object {
-        "busy": false,
-        "disabled": true,
-      }
-    }
     activeOpacity={0.3}
-    delayPressIn={0}
+    background={Object {}}
     disabled={true}
     onPress={[Function]}
   >
@@ -300,20 +260,12 @@ exports[`Button Component Button Types Outline should display raised outline but
     Object {
       "backgroundColor": "#fff",
       "borderRadius": 3,
-      "overflow": "hidden",
     }
   }
 >
   <TouchableOpacity
-    accessibilityRole="button"
-    accessibilityState={
-      Object {
-        "busy": false,
-        "disabled": false,
-      }
-    }
     activeOpacity={0.3}
-    delayPressIn={0}
+    background={Object {}}
     disabled={false}
     onPress={[Function]}
   >
@@ -355,20 +307,12 @@ exports[`Button Component Button Types Solid should display raised solid button 
     Object {
       "backgroundColor": "#fff",
       "borderRadius": 3,
-      "overflow": "hidden",
     }
   }
 >
   <TouchableOpacity
-    accessibilityRole="button"
-    accessibilityState={
-      Object {
-        "busy": false,
-        "disabled": false,
-      }
-    }
     activeOpacity={0.3}
-    delayPressIn={0}
+    background={Object {}}
     disabled={false}
     onPress={[Function]}
   >
@@ -409,20 +353,12 @@ exports[`Button Component Button Types Solid should display solid button 1`] = `
   style={
     Object {
       "borderRadius": 3,
-      "overflow": "hidden",
     }
   }
 >
   <TouchableOpacity
-    accessibilityRole="button"
-    accessibilityState={
-      Object {
-        "busy": false,
-        "disabled": false,
-      }
-    }
     activeOpacity={0.3}
-    delayPressIn={0}
+    background={Object {}}
     disabled={false}
     onPress={[Function]}
   >
@@ -463,20 +399,12 @@ exports[`Button Component Button Types Solid should display solid button disable
   style={
     Object {
       "borderRadius": 3,
-      "overflow": "hidden",
     }
   }
 >
   <TouchableOpacity
-    accessibilityRole="button"
-    accessibilityState={
-      Object {
-        "busy": false,
-        "disabled": true,
-      }
-    }
     activeOpacity={0.3}
-    delayPressIn={0}
+    background={Object {}}
     disabled={true}
     onPress={[Function]}
   >
@@ -525,12 +453,10 @@ exports[`Button Component should apply values from theme 1`] = `
   style={
     Object {
       "borderRadius": 3,
-      "overflow": "hidden",
     }
   }
 >
   <View
-    accessibilityRole="button"
     accessible={true}
     isTVSelectable={true}
     onResponderGrant={[Function]}
@@ -587,20 +513,11 @@ exports[`Button Component should render without issues 1`] = `
   style={
     Object {
       "borderRadius": 3,
-      "overflow": "hidden",
     }
   }
 >
   <TouchableOpacity
-    accessibilityRole="button"
-    accessibilityState={
-      Object {
-        "busy": false,
-        "disabled": false,
-      }
-    }
     activeOpacity={0.3}
-    delayPressIn={0}
     disabled={false}
     onPress={[Function]}
   >

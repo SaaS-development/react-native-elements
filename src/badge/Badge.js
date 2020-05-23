@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-import { withTheme } from '../config';
+import { ViewPropTypes, withTheme } from '../config';
 import { renderNode } from '../helpers';
 
 const Badge = props => {
@@ -40,9 +40,9 @@ const Badge = props => {
 };
 
 Badge.propTypes = {
-  containerStyle: PropTypes.object,
-  badgeStyle: PropTypes.object,
-  textStyle: PropTypes.object,
+  containerStyle: ViewPropTypes.style,
+  badgeStyle: ViewPropTypes.style,
+  // textStyle: Text.propTypes.style,
   value: PropTypes.node,
   onPress: PropTypes.func,
   Component: PropTypes.elementType,
